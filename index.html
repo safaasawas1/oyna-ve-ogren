@@ -1,331 +1,316 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ألعاب تعليمية ممتعة للأطفال بالعربية والتركية">
-  <title>لَعِب وتَعَلَّم | Oyna ve Öğren</title>
-  <style>
-    :root {
-      --ink: #24304a;
-      --muted: #68738a;
-      --pink: #ff7ba8;
-      --yellow: #ffd166;
-      --blue: #7bdff2;
-      --green: #b2f7a1;
-      --purple: #cdb4db;
-      --paper: #fffdf8;
-      --card: #ffffff;
-      --shadow: 0 10px 28px rgba(36, 48, 74, .10);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
-      background: linear-gradient(160deg, #fff3f7 0%, #f1fbff 48%, #fff9e8 100%);
-      color: var(--ink);
-      min-height: 100vh;
-    }
-    button { font: inherit; cursor: pointer; }
-    .wrap { width: min(1080px, 92%); margin: 0 auto; padding: 22px 0 42px; }
-    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .logo { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 18px; background: var(--yellow); font-size: 28px; box-shadow: var(--shadow); }
-    h1 { font-size: clamp(1.25rem, 3vw, 1.8rem); margin: 0; }
-    .subtitle { margin: 3px 0 0; color: var(--muted); font-size: .95rem; }
-    .lang-btn, .back-btn { border: 0; background: white; border-radius: 999px; padding: 10px 16px; color: var(--ink); box-shadow: var(--shadow); font-weight: 700; }
-    .hero { margin: 28px 0 22px; padding: clamp(22px, 5vw, 42px); border-radius: 28px; background: #ffffffc9; box-shadow: var(--shadow); text-align: center; }
-    .hero .emoji { font-size: 44px; }
-    .hero h2 { font-size: clamp(1.6rem, 5vw, 2.6rem); margin: 6px 0 8px; }
-    .hero p { color: var(--muted); margin: 0 auto 18px; max-width: 620px; line-height: 1.7; }
-    .stats { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .stat { background: #fff; border-radius: 999px; padding: 9px 15px; font-weight: 800; }
-    .games { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .game-card { border: 0; border-radius: 24px; padding: 22px 18px; text-align: start; box-shadow: var(--shadow); color: var(--ink); transition: transform .18s ease; min-height: 190px; }
-    .game-card:hover { transform: translateY(-4px); }
-    .game-card:nth-child(1) { background: #ffe0ec; }
-    .game-card:nth-child(2) { background: #fff0bd; }
-    .game-card:nth-child(3) { background: #dff8ff; }
-    .game-icon { font-size: 42px; display: block; margin-bottom: 12px; }
-    .game-card strong { display: block; font-size: 1.2rem; margin-bottom: 5px; }
-    .game-card span:last-child { color: #566078; line-height: 1.5; }
-    .panel { display: none; margin-top: 20px; padding: clamp(18px, 4vw, 32px); border-radius: 26px; background: white; box-shadow: var(--shadow); text-align: center; }
-    .panel.active { display: block; }
-    .panel h2 { margin: 8px 0; font-size: clamp(1.4rem, 4vw, 2rem); }
-    .instruction { color: var(--muted); margin: 0 0 18px; }
-    .prompt { background: #f6f7ff; border-radius: 20px; padding: 22px 12px; margin: 14px 0 18px; }
-    .prompt .big { font-size: clamp(3rem, 13vw, 5rem); font-weight: 900; line-height: 1.15; }
-    .prompt .small { color: var(--muted); margin-top: 8px; }
-    .choices { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .choice { min-width: 82px; min-height: 70px; border: 3px solid transparent; border-radius: 18px; padding: 12px 18px; background: #f2f5ff; color: var(--ink); font-size: 1.35rem; font-weight: 900; }
-    .choice:hover { border-color: var(--purple); }
-    .choice:focus-visible, button:focus-visible { outline: 3px solid #6155d9; outline-offset: 3px; }
-    .feedback { min-height: 32px; font-weight: 800; margin: 15px 0 6px; }
-    .next-btn { border: 0; border-radius: 999px; padding: 12px 24px; background: var(--ink); color: white; font-weight: 800; margin-top: 8px; }
-    .back-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
-    .progress { color: var(--muted); font-weight: 700; }
-    footer { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 28px; }
-    [dir="ltr"] .game-card { text-align: left; }
-    @media (max-width: 720px) { .games { grid-template-columns: 1fr; } .game-card { min-height: auto; } .hero { margin-top: 20px; } }
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة الحروف والتشكيل للأطفال - العب وتعلم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #a8edf saturated, #fed6e3);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            border: 6px solid #FFD166;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background: #FFF3B0;
+            padding: 15px 25px;
+            border-radius: 20px;
+        }
+
+        .score-board {
+            font-size: 24px;
+            font-weight: 900;
+            color: #073B4C;
+        }
+
+        .star-icon {
+            color: #FFD166;
+            margin-right: 5px;
+        }
+
+        .character-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            background: #E8F1F2;
+            padding: 15px;
+            border-radius: 20px;
+        }
+
+        .character-avatar {
+            font-size: 60px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .character-dialog {
+            font-size: 20px;
+            font-weight: bold;
+            color: #118AB2;
+            background: white;
+            padding: 10px 18px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .question-card {
+            background: #06D6A0;
+            color: white;
+            padding: 25px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 0 #059e75;
+        }
+
+        .letter-display {
+            font-size: 90px;
+            font-weight: 900;
+            line-height: 1.1;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            margin: 10px 0;
+        }
+
+        .instruction {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background: #118AB2;
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #0c6482;
+            transition: all 0.1s ease;
+        }
+
+        .option-btn:hover {
+            transform: translateY(-2px);
+            background: #0f7a9d;
+        }
+
+        .option-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #0c6482;
+        }
+
+        .option-btn.correct {
+            background: #06D6A0 !important;
+            box-shadow: 0 6px 0 #048a67 !important;
+        }
+
+        .option-btn.wrong {
+            background: #EF476F !important;
+            box-shadow: 0 6px 0 #b82345 !important;
+        }
+
+        .sound-btn {
+            background: #FFD166;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #cca33d;
+            margin-bottom: 10px;
+        }
+
+        .sound-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #cca33d;
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true">🌈</div>
-        <div>
-          <h1 data-i18n="siteTitle">لَعِب وتَعَلَّم</h1>
-          <p class="subtitle" data-i18n="siteSubtitle">Oyna ve Öğren</p>
+
+<div class="game-container">
+    <div class="header">
+        <button class="sound-btn" onclick="playQuestionSound()" title="استمع للحرف">🔊</button>
+        <div class="score-board">
+            النقاط: <span id="score">0</span> ⭐
         </div>
-      </div>
-      <button class="lang-btn" id="languageToggle" type="button">🇹🇷 Türkçe</button>
-    </header>
+    </div>
 
-    <section class="hero" id="homeHero">
-      <div class="emoji" aria-hidden="true">🧸 ⭐ 🎨</div>
-      <h2 data-i18n="welcome">نتعلّم ونلعب كل يوم!</h2>
-      <p data-i18n="intro">ألعاب صغيرة وممتعة تساعد الأطفال على تعلّم الحروف والأرقام والحيوانات. اختاروا لعبة وابدؤوا المغامرة!</p>
-      <div class="stats">
-        <div class="stat">⭐ <span data-i18n="starsLabel">نجومي:</span> <span id="totalStars">0</span></div>
-        <div class="stat">🎯 <span data-i18n="roundLabel">الجولات:</span> <span id="totalRounds">0</span></div>
-      </div>
-    </section>
+    <div class="character-box">
+        <div class="character-avatar" id="avatar">🦁</div>
+        <div class="character-dialog" id="dialog">أهلاً بك يا بطل! هل تعرف ما هو هذا الحرف مع الحركة؟</div>
+    </div>
 
-    <main>
-      <section class="games" id="gameMenu" aria-label="Games">
-        <button class="game-card" data-game="letters" type="button">
-          <span class="game-icon" aria-hidden="true">🔤</span>
-          <strong data-i18n="lettersTitle">لعبة الحروف</strong>
-          <span data-i18n="lettersDesc">اختر الحرف المطابق وتعلّم حرفاً جديداً.</span>
-        </button>
-        <button class="game-card" data-game="numbers" type="button">
-          <span class="game-icon" aria-hidden="true">🔢</span>
-          <strong data-i18n="numbersTitle">لعبة الأرقام</strong>
-          <span data-i18n="numbersDesc">عدّ الأشياء واختر العدد الصحيح.</span>
-        </button>
-        <button class="game-card" data-game="animals" type="button">
-          <span class="game-icon" aria-hidden="true">🐱</span>
-          <strong data-i18n="animalsTitle">لعبة الحيوانات</strong>
-          <span data-i18n="animalsDesc">تعرّف على الحيوان واختر اسمه.</span>
-        </button>
-      </section>
+    <div class="question-card">
+        <div class="instruction" id="question-text">اختر الصوت الصحيح للحرف:</div>
+        <div class="letter-display" id="letter-display">بَ</div>
+    </div>
 
-      <section class="panel" id="gamePanel" aria-live="polite">
-        <div class="back-row">
-          <button class="back-btn" id="backButton" type="button" data-i18n="back">← الألعاب</button>
-          <span class="progress" id="progressText">1 / 5</span>
-        </div>
-        <h2 id="gameHeading">لعبة الحروف</h2>
-        <p class="instruction" id="gameInstruction">اختر الإجابة الصحيحة</p>
-        <div class="prompt">
-          <div class="big" id="promptMain">أ</div>
-          <div class="small" id="promptSub"></div>
-        </div>
-        <div class="choices" id="choices"></div>
-        <div class="feedback" id="feedback" role="status"></div>
-        <button class="next-btn" id="nextButton" type="button" hidden>السؤال التالي ←</button>
-      </section>
-    </main>
-    <footer data-i18n="footer">صُنع بحب للأطفال وأهلهم 💛</footer>
-  </div>
+    <div class="options-grid" id="options-container">
+        <!-- الخيارات ستظهر هنا -->
+    </div>
+</div>
 
-  <script>
-    const translations = {
-      ar: {
-        siteTitle: "لَعِب وتَعَلَّم", siteSubtitle: "Oyna ve Öğren",
-        welcome: "نتعلّم ونلعب كل يوم!",
-        intro: "ألعاب صغيرة وممتعة تساعد الأطفال على تعلّم الحروف والأرقام والحيوانات. اختاروا لعبة وابدؤوا المغامرة!",
-        starsLabel: "نجومي:", roundLabel: "الجولات:",
-        lettersTitle: "لعبة الحروف", lettersDesc: "اختر الحرف المطابق وتعلّم حرفاً جديداً.",
-        numbersTitle: "لعبة الأرقام", numbersDesc: "عدّ الأشياء واختر العدد الصحيح.",
-        animalsTitle: "لعبة الحيوانات", animalsDesc: "تعرّف على الحيوان واختر اسمه.",
-        back: "← الألعاب", chooseLetter: "اختر الحرف المطابق", chooseNumber: "كم عدد الأشياء؟ اختر العدد الصحيح",
-        chooseAnimal: "اختر اسم الحيوان الظاهر في الصورة", correct: "أحسنت! إجابة صحيحة ⭐",
-        wrong: "محاولة جميلة! جرّب مرة أخرى 💪", next: "السؤال التالي ←",
-        finish: "رائع! أنهيت هذه الجولة 🎉", again: "العب مرة أخرى", rounds: "السؤال",
-        footer: "صُنع بحب للأطفال وأهلهم 💛", languageButton: "🇹🇷 Türkçe",
-        lettersHeading: "لعبة الحروف", numbersHeading: "لعبة الأرقام", animalsHeading: "لعبة الحيوانات",
-        lettersSub: "ابحث عن نفس الحرف", numberSub: "عدّ الرموز الظاهرة", animalSub: "ما اسم هذا الحيوان؟",
-        animals: {cat:"قطة", dog:"كلب", rabbit:"أرنب", cow:"بقرة", fish:"سمكة", lion:"أسد"},
-        objects: "أشياء", correctAnimal: "الحيوان الصحيح"
-      },
-      tr: {
-        siteTitle: "Oyna ve Öğren", siteSubtitle: "لَعِب وتَعَلَّم",
-        welcome: "Her gün öğrenelim ve oynayalım!",
-        intro: "Harfleri, sayıları ve hayvanları öğrenmek için eğlenceli mini oyunlar. Bir oyun seç ve maceraya başla!",
-        starsLabel: "Yıldızlarım:", roundLabel: "Turlar:",
-        lettersTitle: "Harf Oyunu", lettersDesc: "Aynı harfi bul ve yeni bir harf öğren.",
-        numbersTitle: "Sayı Oyunu", numbersDesc: "Nesneleri say ve doğru sayıyı seç.",
-        animalsTitle: "Hayvan Oyunu", animalsDesc: "Hayvanı tanı ve doğru adını seç.",
-        back: "← Oyunlar", chooseLetter: "Aynı harfi bul", chooseNumber: "Kaç nesne var? Doğru sayıyı seç",
-        chooseAnimal: "Resimdeki hayvanın adını seç", correct: "Harika! Doğru cevap ⭐",
-        wrong: "Güzel deneme! Tekrar dene 💪", next: "Sonraki soru →",
-        finish: "Harika! Bu turu tamamladın 🎉", again: "Tekrar oyna", rounds: "Soru",
-        footer: "Çocuklar ve aileleri için sevgiyle 💛", languageButton: "🇸🇦 العربية",
-        lettersHeading: "Harf Oyunu", numbersHeading: "Sayı Oyunu", animalsHeading: "Hayvan Oyunu",
-        lettersSub: "Aynı harfi bul", numberSub: "Sembolleri say", animalSub: "Bu hayvanın adı ne?",
-        animals: {cat:"Kedi", dog:"Köpek", rabbit:"Tavşan", cow:"İnek", fish:"Balık", lion:"Aslan"},
-        objects: "nesne", correctAnimal: "Doğru hayvan"
-      }
-    };
-
-    const letterSets = {
-      ar: ["أ","ب","ت","ث","ج","ح","د","ر","س","م"],
-      tr: ["A","B","C","Ç","D","E","G","İ","K","M"]
-    };
-    const animalData = [
-      {key:"cat", emoji:"🐱"}, {key:"dog", emoji:"🐶"}, {key:"rabbit", emoji:"🐰"},
-      {key:"cow", emoji:"🐮"}, {key:"fish", emoji:"🐠"}, {key:"lion", emoji:"🦁"}
+<script>
+    // قائمة الحروف مع التشكيل والخيارات
+    const questions = [
+        { letter: 'أَ', text: 'أَ (فتحة)', options: ['أَ (فتحة)', 'أُ (ضمة)', 'إِ (كسرة)', 'أْ (سكون)'], correct: 0 },
+        { letter: 'بُ', text: 'بُ (ضمة)', options: ['بَ (فتحة)', 'بُ (ضمة)', 'بِ (كسرة)', 'بْ (سكون)'], correct: 1 },
+        { letter: 'تِ', text: 'تِ (كسرة)', options: ['تَ (فتحة)', 'تُ (ضمة)', 'تِ (كسرة)', 'تْ (سكون)'], correct: 2 },
+        { letter: 'ثْ', text: 'ثْ (سكون)', options: ['ثَ (فتحة)', 'ثُ (ضمة)', 'ثِ (كسرة)', 'ثْ (سكون)'], correct: 3 },
+        { letter: 'جَ', text: 'جَ (فتحة)', options: ['جَ (فتحة)', 'جُ (ضمة)', 'جِ (كسرة)', 'جْ (سكون)'], correct: 0 },
+        { letter: 'حُ', text: 'حُ (ضمة)', options: ['حَ (فتحة)', 'حُ (ضمة)', 'حِ (كسرة)', 'حْ (سكون)'], correct: 1 },
+        { letter: 'خِ', text: 'خِ (كسرة)', options: ['خَ (فتحة)', 'خُ (ضمة)', 'خِ (كسرة)', 'خْ (سكون)'], correct: 2 },
+        { letter: 'دَ', text: 'دَ (فتحة)', options: ['دَ (فتحة)', 'دُ (ضمة)', 'دِ (كسرة)', 'دْ (سكون)'], correct: 0 },
+        { letter: 'رُ', text: 'رُ (ضمة)', options: ['رَ (فتحة)', 'رُ (ضمة)', 'رِ (كسرة)', 'رْ (سكون)'], correct: 1 },
+        { letter: 'سِ', text: 'سِ (كسرة)', options: ['سَ (فتحة)', 'سُ (ضمة)', 'سِ (كسرة)', 'سْ (سكون)'], correct: 2 }
     ];
-    let language = "ar";
-    let currentGame = "letters";
-    let questionIndex = 0;
-    let currentQuestion = null;
-    let answered = false;
-    let stars = 0;
-    let rounds = 0;
-    const totalQuestions = 5;
 
-    const $ = (id) => document.getElementById(id);
-    const t = (key) => translations[language][key];
+    let currentQuestionIndex = 0;
+    let score = 0;
 
-    function applyLanguage() {
-      document.documentElement.lang = language;
-      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        if (translations[language][key]) el.textContent = translations[language][key];
-      });
-      $("languageToggle").textContent = t("languageButton");
-      if ($("gamePanel").classList.contains("active")) {
-        $("gameHeading").textContent = currentGame === "letters" ? t("lettersHeading") : currentGame === "numbers" ? t("numbersHeading") : t("animalsHeading");
-        $("gameInstruction").textContent = currentGame === "letters" ? t("chooseLetter") : currentGame === "numbers" ? t("chooseNumber") : t("chooseAnimal");
-        if (!answered) renderQuestion();
-        else renderFeedbackAfterLanguageChange();
-      }
-    }
+    const dialogs = {
+        correct: ["ممتاز يا بطل! 🌟", "إجابة رائعة! 👏", "أنت ذكي جداً! 🎉", "أحسنت القراءة! 🎈"],
+        wrong: ["حاول مرة أخرى! 💪", "ركز جيداً في حركة الحرف! 🤔", "قريب جداً، جرب ثانية! ⭐"]
+    };
 
-    function shuffle(items) {
-      return [...items].sort(() => Math.random() - 0.5);
-    }
-    function pickDifferent(correct, pool, count = 3) {
-      return shuffle(pool.filter(item => item !== correct)).slice(0, count - 1).concat(correct).sort(() => Math.random() - 0.5);
-    }
-    function updateStats() {
-      $("totalStars").textContent = stars;
-      $("totalRounds").textContent = rounds;
-    }
-    function openGame(game) {
-      currentGame = game;
-      questionIndex = 0;
-      $("gameMenu").style.display = "none";
-      $("homeHero").style.display = "none";
-      $("gamePanel").classList.add("active");
-      $("gameHeading").textContent = game === "letters" ? t("lettersHeading") : game === "numbers" ? t("numbersHeading") : t("animalsHeading");
-      $("gameInstruction").textContent = game === "letters" ? t("chooseLetter") : game === "numbers" ? t("chooseNumber") : t("chooseAnimal");
-      makeQuestion();
-    }
-    function backHome() {
-      $("gamePanel").classList.remove("active");
-      $("gameMenu").style.display = "grid";
-      $("homeHero").style.display = "block";
-      updateStats();
-    }
-    function makeQuestion() {
-      answered = false;
-      $("feedback").textContent = "";
-      $("nextButton").hidden = true;
-      $("nextButton").textContent = questionIndex === totalQuestions - 1 ? t("finish") : t("next");
-      $("progressText").textContent = `${questionIndex + 1} / ${totalQuestions}`;
-      if (currentGame === "letters") {
-        const pool = letterSets[language];
-        const correct = pool[Math.floor(Math.random() * pool.length)];
-        currentQuestion = { correct, choices: pickDifferent(correct, pool) };
-      } else if (currentGame === "numbers") {
-        const correct = Math.floor(Math.random() * 9) + 1;
-        currentQuestion = { correct, choices: pickDifferent(correct, [1,2,3,4,5,6,7,8,9]) };
-      } else {
-        const correct = animalData[Math.floor(Math.random() * animalData.length)];
-        currentQuestion = { correct, choices: shuffle(animalData.filter(a => a.key !== correct.key).slice(0, 2).concat(correct)) };
-      }
-      renderQuestion();
-    }
-    function renderQuestion() {
-      if (!currentQuestion) return;
-      const main = $("promptMain");
-      const sub = $("promptSub");
-      const choices = $("choices");
-      choices.innerHTML = "";
-      if (currentGame === "letters") {
-        main.textContent = currentQuestion.correct;
-        sub.textContent = t("lettersSub");
-        currentQuestion.choices.forEach(value => addChoice(value, value));
-      } else if (currentGame === "numbers") {
-        main.textContent = "🍎 ".repeat(currentQuestion.correct).trim();
-        main.style.fontSize = currentQuestion.correct > 5 ? "clamp(1.5rem, 7vw, 3rem)" : "";
-        sub.textContent = t("numberSub");
-        currentQuestion.choices.forEach(value => addChoice(value, value));
-      } else {
-        main.style.fontSize = "";
-        main.textContent = currentQuestion.correct.emoji;
-        sub.textContent = t("animalSub");
-        currentQuestion.choices.forEach(animal => addChoice(animal.emoji + " " + translations[language].animals[animal.key], animal.key));
-      }
-    }
-    function addChoice(label, value) {
-      const button = document.createElement("button");
-      button.className = "choice";
-      button.type = "button";
-      button.textContent = label;
-      button.addEventListener("click", () => checkAnswer(value, button));
-      $("choices").appendChild(button);
-    }
-    function checkAnswer(value, button) {
-      if (answered) return;
-      const correctValue = currentGame === "animals" ? currentQuestion.correct.key : currentQuestion.correct;
-      if (String(value) === String(correctValue)) {
-        answered = true;
-        stars += 1;
-        rounds += 1;
-        $("feedback").textContent = t("correct");
-        $("feedback").style.color = "#21834a";
-        $("nextButton").hidden = false;
-        document.querySelectorAll(".choice").forEach(b => b.disabled = true);
-        updateStats();
-      } else {
-        $("feedback").textContent = t("wrong");
-        $("feedback").style.color = "#bd4565";
-        button.disabled = true;
-      }
-    }
-    function renderFeedbackAfterLanguageChange() {
-      $("feedback").textContent = t("correct");
-      $("nextButton").textContent = questionIndex === totalQuestions - 1 ? t("finish") : t("next");
-    }
-    function nextQuestion() {
-      if (questionIndex >= totalQuestions - 1) {
-        $("feedback").textContent = t("finish");
-        $("feedback").style.color = "#6155d9";
-        $("nextButton").textContent = t("again");
-        $("nextButton").onclick = () => { questionIndex = 0; makeQuestion(); };
-        return;
-      }
-      questionIndex += 1;
-      $("nextButton").onclick = null;
-      makeQuestion();
+    // إعداد الأصوات باستخدام Web Audio API
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'correct') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+            osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+            osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        } else if (type === 'wrong') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(164.81, audioCtx.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.4);
+        }
     }
 
-    $("languageToggle").addEventListener("click", () => {
-      language = language === "ar" ? "tr" : "ar";
-      applyLanguage();
-    });
-    document.querySelectorAll("[data-game]").forEach(button => button.addEventListener("click", () => openGame(button.dataset.game)));
-    $("backButton").addEventListener("click", backHome);
-    $("nextButton").addEventListener("click", nextQuestion);
-    applyLanguage();
-    updateStats();
-  </script>
+    function playQuestionSound() {
+        const currentQ = questions[currentQuestionIndex];
+        const utterance = new SpeechSynthesisUtterance(currentQ.letter);
+        utterance.lang = 'ar-SA';
+        utterance.rate = 0.8;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function loadQuestion() {
+        const q = questions[currentQuestionIndex];
+        document.getElementById('letter-display').innerText = q.letter;
+        
+        const optionsContainer = document.getElementById('options-container');
+        optionsContainer.innerHTML = '';
+
+        q.options.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(index, btn);
+            optionsContainer.appendChild(btn);
+        });
+
+        // قراءة الحرف صوتياً تلقائياً
+        setTimeout(playQuestionSound, 400);
+    }
+
+    function checkAnswer(selectedIndex, button) {
+        const q = questions[currentQuestionIndex];
+        const buttons = document.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.disabled = true);
+
+        if (selectedIndex === q.correct) {
+            button.classList.add('correct');
+            playSound('correct');
+            score += 10;
+            document.getElementById('score').innerText = score;
+            
+            const randomDialog = dialogs.correct[Math.floor(Math.random() * dialogs.correct.length)];
+            document.getElementById('dialog').innerText = randomDialog;
+
+            setTimeout(() => {
+                currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+                loadQuestion();
+            }, 1500);
+        } else {
+            button.classList.add('wrong');
+            playSound('wrong');
+            
+            const randomDialog = dialogs.wrong[Math.floor(Math.random() * dialogs.wrong.length)];
+            document.getElementById('dialog').innerText = randomDialog;
+
+            setTimeout(() => {
+                buttons.forEach(b => b.disabled = false);
+                button.classList.remove('wrong');
+            }, 1200);
+        }
+    }
+
+    // بدء اللعبة
+    loadQuestion();
+</script>
+
 </body>
 </html>
